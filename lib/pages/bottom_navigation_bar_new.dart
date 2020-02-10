@@ -3,33 +3,37 @@ import 'package:flutter_app/pages/c_fragment.dart';
 import 'package:flutter_app/pages/home_fragment.dart';
 import 'package:flutter_app/pages/b_fragment.dart';
 
-void main()=>runApp(BottomNavigationBarExample());
-
+void main() => runApp(BottomNavigationBarExample());
 
 class BottomNavigationBarExample extends StatefulWidget {
   @override
-  _BottomNavigationBarItemState createState() => _BottomNavigationBarItemState();
+  _BottomNavigationBarItemState createState() =>
+      _BottomNavigationBarItemState();
 }
 
 class _BottomNavigationBarItemState extends State<BottomNavigationBarExample> {
-
   int _currentIndex = 0;
 
-  void onTabTapped(int index) {
+
+  onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
+      print("bfkjdsfj  $_currentIndex");
+
     });
+
   }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(
-            title: Text('My Flutter App'),
-          ),
-          bottomNavigationBar: BottomNavigationBar(
+          appBar:_currentIndex!=2?AppBar(
+              title: Text('My Flutter App')):
+          PreferredSize(child: Container(),preferredSize: Size.fromHeight(42),),
+          bottomNavigationBar: Visibility(visible: _currentIndex!=2,child:BottomNavigationBar(
               currentIndex: _currentIndex,
-              onTap: onTabTapped, // new
+              onTap: onTabTapped,// new
               items: [
                 BottomNavigationBarItem(
                   icon: new Icon(Icons.home),
@@ -40,14 +44,10 @@ class _BottomNavigationBarItemState extends State<BottomNavigationBarExample> {
                   title: new Text('Messages'),
                 ),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.person),
-                    title: Text('Profile')
-                )
-              ]
-          ),
-          body: showBottomViewUI()//_children[_currentIndex],
+                    icon: Icon(Icons.person), title: Text('Profile'))
+              ])),
+          body: showBottomViewUI() //_children[_currentIndex],
       ),
-
     );
   }
 
@@ -59,8 +59,6 @@ class _BottomNavigationBarItemState extends State<BottomNavigationBarExample> {
           HomeFragment(),
           BFragment(),
           CFragment(),
-        ]
-    );
+        ]);
   }
-
 }

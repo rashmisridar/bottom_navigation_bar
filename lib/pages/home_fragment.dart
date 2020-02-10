@@ -5,7 +5,10 @@ class HomeFragment extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        child: Text("Home Fragment",style: TextStyle(color: Colors.black),),
+        child: Text(
+          "Home Fragment",
+          style: TextStyle(color: Colors.black),
+        ),
       ),
     );
   }
