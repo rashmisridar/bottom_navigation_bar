@@ -3,16 +3,15 @@ import 'package:flutter_app/pages/c_fragment.dart';
 import 'package:flutter_app/pages/home_fragment.dart';
 import 'package:flutter_app/pages/b_fragment.dart';
 
-void main()=>runApp(BottomNavigationBarExample());
-
+void main() => runApp(BottomNavigationBarExample());
 
 class BottomNavigationBarExample extends StatefulWidget {
   @override
-  _BottomNavigationBarItemState createState() => _BottomNavigationBarItemState();
+  _BottomNavigationBarItemState createState() =>
+      _BottomNavigationBarItemState();
 }
 
 class _BottomNavigationBarItemState extends State<BottomNavigationBarExample> {
-
   int _currentIndex = 0;
 
   void onTabTapped(int index) {
@@ -20,13 +19,14 @@ class _BottomNavigationBarItemState extends State<BottomNavigationBarExample> {
       _currentIndex = index;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(
-            title: Text('My Flutter App'),
-          ),
+//          appBar: AppBar(
+//            title: Text('My Flutter App'),
+//          ),
           bottomNavigationBar: BottomNavigationBar(
               currentIndex: _currentIndex,
               onTap: onTabTapped, // new
@@ -40,14 +40,10 @@ class _BottomNavigationBarItemState extends State<BottomNavigationBarExample> {
                   title: new Text('Messages'),
                 ),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.person),
-                    title: Text('Profile')
-                )
-              ]
+                    icon: Icon(Icons.person), title: Text('Profile'))
+              ]),
+          body: showBottomViewUI() //_children[_currentIndex],
           ),
-          body: showBottomViewUI()//_children[_currentIndex],
-      ),
-
     );
   }
 
@@ -59,8 +55,6 @@ class _BottomNavigationBarItemState extends State<BottomNavigationBarExample> {
           HomeFragment(),
           BFragment(),
           CFragment(),
-        ]
-    );
+        ]);
   }
-
 }
